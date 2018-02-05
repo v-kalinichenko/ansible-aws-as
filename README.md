@@ -7,12 +7,9 @@ Ansible can be installed as part of the bootstrapping of the instance or with Ru
 
 Amazon Linux
 For Amazon Linux Ansible can be installed using pip. You can use the following command.
----
 ```yaml
 ---
 sudo pip install ansible
-``````
----
 ```
 ```yaml
 ---
@@ -22,8 +19,6 @@ For Ubuntu you can install Ansible using the default package manager. Use this c
 ```yaml
 ---
 sudo apt-get install ansible -y
-``````
----
 ```
 ```yaml
 ---
@@ -34,8 +29,6 @@ For RedHat 7 you can install Ansible by enabling the epel repo. Use the followin
 ---
 sudo rpm -Uvh https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
 sudo yum -y install ansible
-``````
----
 ```
 ```yaml
 ---
