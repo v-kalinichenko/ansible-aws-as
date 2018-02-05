@@ -41,4 +41,4 @@ volumes:
 
 
 
-Run the playbook with ` ansible-playbook deploy.yml --sudo --key-file=aws-key.pem --ask-vault-pass -vv` and a new instance will be launched. 
+Run the playbook with ` ansible-playbook deploy.yml --sudo --key-file=aws-key.pem --ask-vault-pass -e group_name="" -vv`
