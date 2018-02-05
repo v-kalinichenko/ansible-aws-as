@@ -58,4 +58,4 @@ volumes:
 
 
 
-Run the playbook with ` ansible-playbook deploy.yml --sudo --key-file=aws-key.pem --ask-vault-pass -e group_name= -vv`
+Run the playbook with ` ansible-playbook deploy.yml --key-file=aws-key.pem --ask-vault-pass -e group_name= -vv`
