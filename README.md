@@ -7,7 +7,7 @@ Ansible can be installed as part of the bootstrapping of the instance or with Ru
 
 Amazon Linux
 For Amazon Linux Ansible can be installed using pip. You can use the following command.
-
+---
 ```yaml
 ---
 sudo pip install ansible
