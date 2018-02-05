@@ -1,6 +1,24 @@
 # EC2 Auto Scaling with Ansible
 Ansible playbook that creates an auto scaling infastructure in aws. 
 
+Installing Ansible on target instances
+
+Ansible can be installed as part of the bootstrapping of the instance or with Run Command. The following is some reference information you can use to install Ansible on different Linux distributions:
+
+Amazon Linux
+For Amazon Linux Ansible can be installed using pip. You can use the following command.
+
+sudo pip install ansible
+Ubuntu
+For Ubuntu you can install Ansible using the default package manager. Use this command.
+
+sudo apt-get install ansible -y
+RedHat 7
+For RedHat 7 you can install Ansible by enabling the epel repo. Use the following commands:
+
+sudo rpm -Uvh https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+sudo yum -y install ansible
+
 Before running put your ami keys in `amiKeys.yml` replacing the current info:
 
     ---
@@ -41,4 +59,4 @@ volumes:
 
 
 
-Run the playbook with ` ansible-playbook deploy.yml --sudo --key-file=aws-key.pem --ask-vault-pass -e group_name="" -vv`
+Run the playbook with ` ansible-playbook deploy.yml --sudo --key-file=aws-key.pem --ask-vault-pass -e group_name= -vv`
