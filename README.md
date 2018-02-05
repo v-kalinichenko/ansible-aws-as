@@ -10,22 +10,16 @@ For Amazon Linux Ansible can be installed using pip. You can use the following c
 ```yaml
 sudo pip install ansible
 ```
-```yaml
-```
 Ubuntu
 For Ubuntu you can install Ansible using the default package manager. Use this command.
 ```yaml
 sudo apt-get install ansible -y
-```
-```yaml
 ```
 RedHat 7
 For RedHat 7 you can install Ansible by enabling the epel repo. Use the following commands:
 ```yaml
 sudo rpm -Uvh https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
 sudo yum -y install ansible
-```
-```yaml
 ```
 Before running put your ami keys in `amiKeys.yml` replacing the current info:
 
