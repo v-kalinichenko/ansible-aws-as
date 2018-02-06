@@ -57,7 +57,7 @@ keypair: YOUR_KEYPAIR
 #your security group
 security_groups: YOUR_SECURITY_GROUP
 #the subnet you want to use, found in the vpc menu
-subnetID: subnet-19096536
+subnetID: YOUR_SUBNET_ID
 #the region of the subnet you are using
 region: us-east-1
 zone: us-east-1a
