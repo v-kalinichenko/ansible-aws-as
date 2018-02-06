@@ -30,7 +30,8 @@ Then encrypt it with:
 
     ansible-vault encrypt amiKeys.yml
     
-    
+## Setting up Ansible    
+
 To get started with dynamic inventory management, you’ll need to grab the EC2.py script and the EC2.ini config file.
 The EC2.py script is written using the Boto EC2 library and will query AWS for our running Amazon EC2 instances. The EC2.ini file is the config file for EC2.py, and can be used to limit the scope of Ansible's reach. We can specify the regions, instance tags, or roles that the EC2.py script will find, so we'll grab it from GitHub.
 Place [ec2.py](https://raw.githubusercontent.com/ansible/ansible/devel/contrib/inventory/ec2.py) and [ec2.ini](https://raw.githubusercontent.com/ansible/ansible/devel/contrib/inventory/ec2.ini) into `/etc/ansible/inventory` (creating that directory if absent)
