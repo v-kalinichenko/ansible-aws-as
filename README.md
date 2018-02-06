@@ -23,12 +23,25 @@ sudo yum -y install ansible
 ```
 Before running put your ami keys in `amiKeys.yml` replacing the current info:
 
-    ami_access: "XXXXXXXXXXXXXXXXXXXXXXX"
-    ami_secret: "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+    ami_access: "YOUR_AWS_API_KEY"
+    ami_secret: "YOUR_AWS_API_SECRET_KEY"
 
 Then encrypt it with:
 
     ansible-vault encrypt amiKeys.yml
+    
+    
+To get started with dynamic inventory management, you’ll need to grab the EC2.py script and the EC2.ini config file.
+The EC2.py script is written using the Boto EC2 library and will query AWS for our running Amazon EC2 instances. The EC2.ini file is the config file for EC2.py, and can be used to limit the scope of Ansible's reach. We can specify the regions, instance tags, or roles that the EC2.py script will find, so we'll grab it from GitHub.
+Place [ec2.py](https://raw.githubusercontent.com/ansible/ansible/devel/contrib/inventory/ec2.py) and [ec2.ini](https://raw.githubusercontent.com/ansible/ansible/devel/contrib/inventory/ec2.ini) into `/etc/ansible/inventory` (creating that directory if absent)
+* Linked from this Ansible documentation: http://docs.ansible.com/ansible/intro_dynamic_inventory.html#example-aws-ec2-external-inventory-script
+
+Modify `/etc/ansible/ansible.cfg` to use that directory as the inventory source:
+
+```ini
+# /etc/ansible/ansible.cfg
+inventory = /etc/ansible/inventory
+```
     
 Then replace the info in `group_vars/all.yml` with the info of your aws project:
 
