@@ -32,12 +32,7 @@
 #    image_id: "{{ old_lc.results[0].ami_id }}"
 #    name: "{{ old_lc.results[0].name }}"
     state: absent
-    volumes:
-    - device_name: /dev/sda1
-      device_type: gp2
-      volume_size: 8
-      delete_on_termination: true
-#  with_items: old_lc.results
+  with_items: old_lc.results
 #  when: old_lc.results
 #  with_items: old_lc.results
 #  when: old_lc.results|length > 0

@@ -17,7 +17,6 @@
   become_method: sudo
   roles:
     - deploy
-#    - nginx
 
 - hosts: localhost
   connection: local
