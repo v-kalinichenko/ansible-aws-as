@@ -1,0 +1,10 @@
+---
+# roles/terminate/tasks/main.yml
+- name: Terminate old instance(s)
+  ec2:
+    aws_access_key: '{{ ami_access }}'
+    aws_secret_key: '{{ ami_secret }}'
+    instance_ids: "{{ ec2_id }}"
+    region: "{{ region }}"
+    state: absent
+    wait: yes

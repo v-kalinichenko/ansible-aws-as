@@ -1,0 +1,48 @@
+---
+# roles/delete-old-launch-configurations/tasks/main.yml
+
+- lc_find:
+    aws_access_key: '{{ ami_access }}'
+    aws_secret_key: '{{ ami_secret }}'
+    region: "{{ region }}"
+#    name: "{{ asg_name }}-*"
+    name_regex: "{{ asg_name }}-*"
+    sort: yes
+    sort_order: ascending
+    sort_end: -2
+  register: old_lc_output
+
+- ec2_lc_facts:
+    aws_access_key: '{{ ami_access }}'
+    aws_secret_key: '{{ ami_secret }}'
+    region: "{{ region }}"
+    name: "{{old_lc_output|json_query('results[*].name')}}"
+    sort: created_time
+    sort_order: ascending
+  register: old_lc
+
+- debug: var=old_lc
+
+- ec2_lc:
+    aws_access_key: '{{ ami_access }}'
+    aws_secret_key: '{{ ami_secret }}'
+    region: "{{ region }}"
+    name: "{{old_lc}}"
+#    name: "{{ item.name }}"
+#    image_id: "{{ old_lc.results[0].ami_id }}"
+#    name: "{{ old_lc.results[0].name }}"
+    state: absent
+    volumes:
+    - device_name: /dev/sda1
+      device_type: gp2
+      volume_size: 8
+      delete_on_termination: true
+#  with_items: old_lc.results
+#  when: old_lc.results
+#  with_items: old_lc.results
+#  when: old_lc.results|length > 0
+  ignore_errors: yes
+  register: delete_old_lc
+
+- name: Show delete old lc
+  debug: var=delete_old_lc  

@@ -1,0 +1,33 @@
+#roles/delete-old-amis/tasks/main.yml
+
+- ec2_ami_find:
+    aws_access_key: '{{ ami_access }}'
+    aws_secret_key: '{{ ami_secret }}'
+    region: "{{ region }}"
+    owner: 991816150401
+    name: "{{ asg_name }}-*"
+    sort: name
+    sort_order: descending
+    sort_end: -2
+  register: ami_find_output
+ 
+- ec2_ami:
+    aws_access_key: '{{ ami_access }}'
+    aws_secret_key: '{{ ami_secret }}'
+    region: "{{ region }}"
+    image_id: "{{ ami_find_output.results[0].ami_id }}"
+    delete_snapshot: true
+    state: absent
+  with_items: ami_find_output.results
+  when: ami_find_output.results|length > 0
+  ignore_errors: yes
+  register: delete_old_ami
+
+- name: Show delete old AMIs
+  debug: var=delete_old_ami
+
+
+
+
+
+

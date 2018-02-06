@@ -1,0 +1,51 @@
+---
+# deploy.yml
+
+- hosts: localhost
+  connection: local
+  gather_facts: no
+  vars_files:
+    - amiKeys.yml
+
+  roles:
+    - role: launch
+      name: "{{ group_name }}-ami"
+
+- hosts: "{{ group_name }}-ami"
+  become: True
+  become_user: root
+  become_method: sudo
+  roles:
+    - deploy
+#    - nginx
+
+- hosts: localhost
+  connection: local
+#  gather_facts: no
+  vars_files:
+    - amiKeys.yml
+
+  roles:
+    - { role: build-ami, asg_name: "{{ group_name }}" }
+    - { role: create-launch-configuration, asg_name: "{{ group_name }}" }
+    - { role: load-balancer, asg_name: "{{ group_name }}" }
+    - { role: auto-scaling, asg_name: "{{ group_name }}" }
+
+- hosts: localhost
+  connection: local
+  gather_facts: no
+  vars_files:
+    - amiKeys.yml
+
+  roles:
+    - { role: delete-old-launch-configurations, asg_name: "{{ group_name }}" }
+    - { role: delete-old-amis, asg_name: "{{ group_name }}" }
+
+- hosts: "{{ group_name }}-ami"
+  connection: local
+  gather_facts: no
+  vars_files:
+    - amiKeys.yml
+
+  roles:
+    - terminate

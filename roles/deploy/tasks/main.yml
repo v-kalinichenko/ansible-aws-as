@@ -1,0 +1,17 @@
+---
+- name: Nginx setup
+  apt: 
+    pkg: nginx 
+    state: present
+    update_cache: true
+
+- name: Configure Nginx
+  copy: 
+    src: index.html.j2 
+    dest: /usr/share/nginx/html/index.html
+
+- name: Enable and start Nginx
+  service:
+    name: nginx
+    enabled: yes
+    state: restarted

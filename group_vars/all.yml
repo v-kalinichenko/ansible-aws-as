@@ -1,0 +1,16 @@
+---
+# group_vars/all.yml
+
+region: us-east-1
+zone: us-east-1a
+group_name: "ansible-demo"
+keypair: aws-key
+group: "sg-a4c5c5d0"
+security_groups: default
+subnetID: subnet-19096536
+instance_type: t2.micro
+volumes:
+  - device_name: /dev/sda1
+    device_type: gp2
+    volume_size: 8
+    delete_on_termination: true
