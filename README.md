@@ -21,6 +21,10 @@ For RedHat 7 you can install Ansible by enabling the epel repo. Use the followin
 sudo rpm -Uvh https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
 sudo yum -y install ansible
 ```
+
+## Setting up Ansible    
+
+
 Before running put your ami keys in `amiKeys.yml` replacing the current info:
 
     ami_access: "YOUR_AWS_API_KEY"
@@ -29,8 +33,6 @@ Before running put your ami keys in `amiKeys.yml` replacing the current info:
 Then encrypt it with:
 
     ansible-vault encrypt amiKeys.yml
-    
-## Setting up Ansible    
 
 To get started with dynamic inventory management, you’ll need to grab the EC2.py script and the EC2.ini config file.
 The EC2.py script is written using the Boto EC2 library and will query AWS for our running Amazon EC2 instances. The EC2.ini file is the config file for EC2.py, and can be used to limit the scope of Ansible's reach. We can specify the regions, instance tags, or roles that the EC2.py script will find, so we'll grab it from GitHub.
